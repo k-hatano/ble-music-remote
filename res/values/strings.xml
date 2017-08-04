@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BLE Music Remote</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_player">Player Mode</string>
+    <string name="title_activity_controller">Controller Mode</string>
+    
+    <string name="player">Player</string>
+    <string name="controller">Controller</string>
+    
+    <string name="minus">-</string>
+    <string name="rewind">|&lt;&lt;</string>
+    <string name="play_pause">&gt;</string>
+    <string name="forward">&gt;&gt;|</string>
+    <string name="plus">+</string>
+
+</resources>
