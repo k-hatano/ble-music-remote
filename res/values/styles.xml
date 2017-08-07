@@ -14,7 +14,18 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:colorAccent">@color/deepblue</item>
+        <item name="android:statusBarColor">@color/marineblue</item>
+        <item name="android:colorPrimary">@color/marineblue</item>
+        <item name="android:navigationBarColor">@color/marineblue</item>
+        <item name="android:windowBackground">@color/skyblue</item>
     </style>
+   
+    <color name="blue">#0000FF</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="aquablue">#0080FF</color>
+    <color name="marineblue">#004080</color>
+    <color name="deepblue">#000080</color>
+    <color name="skyblue">#66CCFF</color>
 
 </resources>
