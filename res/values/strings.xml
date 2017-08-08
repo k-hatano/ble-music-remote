@@ -9,6 +9,7 @@
     
     <string name="player">Player</string>
     <string name="controller">Controller</string>
+    <string name="disconnect">Disconnect</string>
     
     <string name="minus">-</string>
     <string name="rewind">|&lt;&lt;</string>

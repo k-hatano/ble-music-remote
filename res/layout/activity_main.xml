@@ -15,16 +15,16 @@
 
         <Button
             android:id="@+id/button_player"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
             android:layout_centerHorizontal="true"
             android:background="@drawable/blue_button"
             android:text="@string/player" />
 
         <Button
             android:id="@+id/button_controller"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
             android:layout_below="@+id/button_player"
             android:layout_centerHorizontal="true"
             android:background="@drawable/blue_button"

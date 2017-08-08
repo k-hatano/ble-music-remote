@@ -8,4 +8,7 @@
     <dimen name="button_padding">8dp</dimen>
     <dimen name="button_size">96dp</dimen>
     
+    <dimen name="view_padding">4dp</dimen>
+    <dimen name="field_padding">1dp</dimen>
+    
 </resources>

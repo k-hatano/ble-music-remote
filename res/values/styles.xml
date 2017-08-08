@@ -28,5 +28,8 @@
     <color name="deepblue">#000080</color>
     <color name="skyblue">#66CCFF</color>
     <color name="pastelblue">#CCEEFF</color>
+    
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
 
 </resources>

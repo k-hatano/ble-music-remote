@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle" >
-
-    <size
-        android:height="@dimen/button_size"
-        android:width="@dimen/button_size" />
     
     <padding
         android:left="@dimen/button_padding"
@@ -16,6 +12,6 @@
 
     <stroke
         android:width="@dimen/button_stroke_width"
-        android:color="@color/aquablue" />
+        android:color="@color/skyblue" />
 
 </shape>
