@@ -22,6 +22,7 @@
                 android:id="@+id/button_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
                 android:text="@string/plus" />
 
             <Space />
@@ -33,18 +34,21 @@
                 android:id="@+id/button_rewind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
                 android:text="@string/rewind" />
 
             <Button
                 android:id="@+id/button_play_plause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
                 android:text="@string/play_pause" />
 
             <Button
                 android:id="@+id/button_forward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
                 android:text="@string/forward" />
         </TableRow>
 
@@ -56,6 +60,7 @@
                 android:id="@+id/button_minus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
                 android:text="@string/minus" />
 
             <Space />

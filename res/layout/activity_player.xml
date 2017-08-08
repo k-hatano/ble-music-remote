@@ -9,37 +9,61 @@
     tools:context="jp.nita.blemusicremote.PlayerActivity" >
 
     <TableLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:stretchColumns="0,1,2,3,4" >
+        android:layout_centerInParent="true"
+        android:stretchColumns="0,1,2" >
 
         <TableRow>
-            <Button
-                android:id="@+id/button_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/minus" />
-            <Button
-                android:id="@+id/button_rewind"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rewind" />
-            <Button
-                android:id="@+id/button_play_plause"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/play_pause" />
-            <Button
-                android:id="@+id/button_forward"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/forward" />
+
+            <Space />
+
             <Button
                 android:id="@+id/button_plus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
                 android:text="@string/plus" />
+
+            <Space />
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/button_rewind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
+                android:text="@string/rewind" />
+
+            <Button
+                android:id="@+id/button_play_plause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
+                android:text="@string/play_pause" />
+
+            <Button
+                android:id="@+id/button_forward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
+                android:text="@string/forward" />
+        </TableRow>
+
+        <TableRow>
+
+            <Space />
+
+            <Button
+                android:id="@+id/button_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
+                android:text="@string/minus" />
+
+            <Space />
         </TableRow>
     </TableLayout>
 
