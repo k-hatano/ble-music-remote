@@ -18,8 +18,11 @@
             android:layout_width="@dimen/button_size"
             android:layout_height="@dimen/button_size"
             android:layout_centerHorizontal="true"
+            android:drawableTop="@drawable/player_on_phone"
             android:background="@drawable/blue_button"
-            android:text="@string/player" />
+            android:text="@string/player"
+            android:textColor="@color/marineblue"
+            android:textSize="@dimen/button_text_size" />
 
         <Button
             android:id="@+id/button_controller"
@@ -27,8 +30,11 @@
             android:layout_height="@dimen/button_size"
             android:layout_below="@+id/button_player"
             android:layout_centerHorizontal="true"
+            android:drawableTop="@drawable/controller_on_phone"
             android:background="@drawable/blue_button"
-            android:text="@string/controller" />
+            android:text="@string/controller"
+            android:textColor="@color/marineblue"
+            android:textSize="@dimen/button_text_size" />
     </RelativeLayout>
 
 </RelativeLayout>
