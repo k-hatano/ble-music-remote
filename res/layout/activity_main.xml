@@ -15,10 +15,10 @@
 
         <Button
             android:id="@+id/button_player"
-            android:layout_width="@dimen/button_size"
+            android:layout_width="@dimen/button_size_wide"
             android:layout_height="@dimen/button_size"
             android:layout_centerHorizontal="true"
-            android:drawableTop="@drawable/player_on_phone"
+            android:drawableLeft="@drawable/player_on_phone"
             android:background="@drawable/blue_button"
             android:text="@string/player"
             android:textColor="@color/marineblue"
@@ -26,11 +26,11 @@
 
         <Button
             android:id="@+id/button_controller"
-            android:layout_width="@dimen/button_size"
+            android:layout_width="@dimen/button_size_wide"
             android:layout_height="@dimen/button_size"
             android:layout_below="@+id/button_player"
             android:layout_centerHorizontal="true"
-            android:drawableTop="@drawable/controller_on_phone"
+            android:drawableLeft="@drawable/controller_on_phone"
             android:background="@drawable/blue_button"
             android:text="@string/controller"
             android:textColor="@color/marineblue"

@@ -16,5 +16,7 @@
     <string name="play_pause">&gt;</string>
     <string name="forward">&gt;&gt;|</string>
     <string name="plus">+</string>
+    
+    <string name="show_log">Show Log</string>
 
 </resources>
