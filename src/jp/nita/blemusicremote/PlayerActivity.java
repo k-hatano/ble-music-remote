@@ -1,6 +1,7 @@
 package jp.nita.blemusicremote;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ public class PlayerActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_player);
+		startAdvertising();
 	}
 
 	@Override
@@ -30,5 +32,14 @@ public class PlayerActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void startAdvertising() {
+		ProgressDialog progressDialog;
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setTitle(getString(R.string.player_mode));
+		progressDialog.setMessage(getString(R.string.advertising));
+		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		progressDialog.show();
 	}
 }

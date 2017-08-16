@@ -9,6 +9,8 @@
     
     <string name="player">Player</string>
     <string name="controller">Controller</string>
+    <string name="player_mode">Player Mode</string>
+    <string name="controller_mode">Controller Mode</string>
     <string name="disconnect">Disconnect</string>
     
     <string name="minus">-</string>
@@ -18,5 +20,8 @@
     <string name="plus">+</string>
     
     <string name="show_log">Show Log</string>
+    
+    <string name="advertising">Advertising...</string>
+    <string name="scanning">Scanning...</string>
 
 </resources>

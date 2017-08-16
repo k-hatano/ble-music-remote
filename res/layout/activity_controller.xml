@@ -60,7 +60,12 @@
                 android:src="@drawable/minus"
                 android:background="@drawable/blue_button" />
 
-            <Space />
+            <ImageButton
+                android:id="@+id/button_eject"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:src="@drawable/eject"
+                android:background="@drawable/blue_button" />
         </TableRow>
     </TableLayout>
 
