@@ -35,11 +35,7 @@ public class ControllerActivity extends Activity {
 	}
 	
 	public void startScanning() {
-		ProgressDialog progressDialog;
-		progressDialog = new ProgressDialog(this);
-		progressDialog.setTitle(getString(R.string.controller_mode));
-		progressDialog.setMessage(getString(R.string.scanning));
-		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		ProgressDialog progressDialog = Statics.getProgressDialog(this, getString(R.string.controller_mode), getString(R.string.scanning));
 		progressDialog.show();
 	}
 }

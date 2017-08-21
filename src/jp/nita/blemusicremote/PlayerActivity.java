@@ -35,11 +35,7 @@ public class PlayerActivity extends Activity {
 	}
 	
 	public void startAdvertising() {
-		ProgressDialog progressDialog;
-		progressDialog = new ProgressDialog(this);
-		progressDialog.setTitle(getString(R.string.player_mode));
-		progressDialog.setMessage(getString(R.string.advertising));
-		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		ProgressDialog progressDialog = Statics.getProgressDialog(this, getString(R.string.player_mode), getString(R.string.advertising));
 		progressDialog.show();
 	}
 }

@@ -15,6 +15,12 @@ public class MainActivity extends Activity {
 	public static final String SERVICE_UUID = "7865087B-D9D0-423A-9C80-042D9BBEA524";
 	public static final String CHAR_UUID = "608072DD-6825-4293-B3E7-324CF0B5CA08";
 	public static final String CHAR_CONFIG_UUID = "00002902-0000-1000-8000-00805f9b34fb";
+	
+	public static final int REQUEST_PLAYER = 1;
+	public static final int REQUEST_CONTROLLER = 2;
+	public static final int RESULT_OK = 0;
+	public static final int RESULT_ERROR_BLUETOOTH_IS_OFF = 1;
+	public static final int RESULT_ERROR_NOT_SUPPORTED = 2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +32,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this, PlayerActivity.class);
-				startActivity(intent);
+				startActivityForResult(intent, REQUEST_PLAYER);
 			}
 
 		});
@@ -36,7 +42,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this, ControllerActivity.class);
-				startActivity(intent);
+				startActivityForResult(intent, REQUEST_CONTROLLER);
 			}
 
 		});
