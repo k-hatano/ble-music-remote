@@ -156,6 +156,8 @@ public class ControllerActivity extends Activity {
 			if (newState == BluetoothProfile.STATE_CONNECTED) {
 				if (gatt.getServices().size() == 0) {
 					gatt.discoverServices();
+				} else {
+					handleServices(gatt);
 				}
 			} else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
 				if (mBleGatt.getDevice().getAddress().equals(gatt.getDevice().getAddress())) {
@@ -177,27 +179,31 @@ public class ControllerActivity extends Activity {
 		@Override
 		public void onServicesDiscovered(BluetoothGatt gatt, int status) {
 			if (status == BluetoothGatt.GATT_SUCCESS) {
-				BluetoothGattService service = gatt.getService(UUID.fromString(MainActivity.SERVICE_UUID));
-				if (service != null) {
-					mBleCharacteristic = service.getCharacteristic(UUID.fromString(MainActivity.CHAR_UUID));
+				handleServices(gatt);
+			}
+		}
+		
+		public void handleServices(BluetoothGatt gatt) {
+			BluetoothGattService service = gatt.getService(UUID.fromString(MainActivity.SERVICE_UUID));
+			if (service != null) {
+				mBleCharacteristic = service.getCharacteristic(UUID.fromString(MainActivity.CHAR_UUID));
 
-					if (mBleCharacteristic != null) {
-						mBleGatt = gatt;
-					
-						BluetoothGattDescriptor descriptor = mBleCharacteristic
-								.getDescriptor(UUID.fromString(MainActivity.CHAR_CONFIG_UUID));
+				if (mBleCharacteristic != null) {
+					mBleGatt = gatt;
+				
+					BluetoothGattDescriptor descriptor = mBleCharacteristic
+							.getDescriptor(UUID.fromString(MainActivity.CHAR_CONFIG_UUID));
 
-						descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-						mBleGatt.writeDescriptor(descriptor);
+					descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+					mBleGatt.writeDescriptor(descriptor);
 
-						if (state == STATE_SCANNING) {
-							if (!finalActivity.foundDevices.containsKey(mBleGatt.getDevice().getAddress())) {
-								finalActivity.foundDevices.put(mBleGatt.getDevice().getAddress(), mBleGatt.getDevice());
-							}
-						} else if (state == STATE_PAIRED) {
-							TextView playerTextView = (TextView)findViewById(R.id.textview_player);
-							playerTextView.setText(mBleGatt.getDevice().getAddress());
+					if (state == STATE_SCANNING) {
+						if (!finalActivity.foundDevices.containsKey(mBleGatt.getDevice().getAddress())) {
+							finalActivity.foundDevices.put(mBleGatt.getDevice().getAddress(), mBleGatt.getDevice());
 						}
+					} else if (state == STATE_PAIRED) {
+						TextView playerTextView = (TextView)findViewById(R.id.textview_player);
+						playerTextView.setText(mBleGatt.getDevice().getAddress());
 					}
 				}
 			}
