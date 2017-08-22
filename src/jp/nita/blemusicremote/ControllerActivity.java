@@ -43,11 +43,18 @@ public class ControllerActivity extends Activity {
 
 	Handler guiThreadHandler = new Handler();
 	final ControllerActivity finalActivity = this;
+	
+	final int STATE_NONE = 0;
+	final int STATE_SCANNING = 1;
+	final int STATE_PAIRED = 2;
+	int state = STATE_NONE;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_controller);
+		
+		state = STATE_NONE;
 
 		BluetoothManager bluetoothManager = (BluetoothManager) (this.getSystemService(Context.BLUETOOTH_SERVICE));
 		mBluetoothAdapter = bluetoothManager.getAdapter();
@@ -94,6 +101,7 @@ public class ControllerActivity extends Activity {
 	public void startScanning() {
 		final ProgressDialog progressDialog = Statics.getProgressDialog(this, getString(R.string.controller_mode), getString(R.string.scanning));
 		
+		state = STATE_SCANNING;
 		scanPairedDevices();
 		scanNewDevice();
 		guiThreadHandler.postDelayed(new Runnable() {
@@ -106,6 +114,7 @@ public class ControllerActivity extends Activity {
 		progressDialog.setOnCancelListener(new OnCancelListener() {
 			@Override
 			public void onCancel(DialogInterface arg0) {
+				state = STATE_NONE;
 				mBluetoothLeScanner.stopScan(scanCallback);
 				if (foundDevices.size() <= 0) {
 					OnClickListener listener = new OnClickListener(){
@@ -129,6 +138,7 @@ public class ControllerActivity extends Activity {
 							.setItems(list, new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface arg0, int arg1) {
+									state = STATE_PAIRED;
 									foundDevices.get(list[arg1]).connectGatt(getApplicationContext(), true,
 											mGattCallback);
 								}
@@ -149,11 +159,18 @@ public class ControllerActivity extends Activity {
 				}
 			} else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
 				if (mBleGatt.getDevice().getAddress().equals(gatt.getDevice().getAddress())) {
-					mBleGatt = null;
+					OnClickListener listener = new OnClickListener(){
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							finish();
+						}
+					};
+					
+					AlertDialog alertDialog = Statics.getAlertDialog(finalActivity, getString(R.string.player_mode),
+							getString(R.string.device_disconnected), listener);
+					alertDialog.show();
 				}
 				gatt.close();
-				TextView playerTextView = (TextView) findViewById(R.id.textview_player);
-				playerTextView.setText("");
 			}
 		}
 
@@ -166,20 +183,21 @@ public class ControllerActivity extends Activity {
 
 					if (mBleCharacteristic != null) {
 						mBleGatt = gatt;
-						// TODO: スキャンしているだけの時はいきなりgattに登録しない
-
+					
 						BluetoothGattDescriptor descriptor = mBleCharacteristic
 								.getDescriptor(UUID.fromString(MainActivity.CHAR_CONFIG_UUID));
 
 						descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
 						mBleGatt.writeDescriptor(descriptor);
 
-						if (!finalActivity.foundDevices.containsKey(mBleGatt.getDevice().getAddress())) {
-							finalActivity.foundDevices.put(mBleGatt.getDevice().getAddress(), mBleGatt.getDevice());
+						if (state == STATE_SCANNING) {
+							if (!finalActivity.foundDevices.containsKey(mBleGatt.getDevice().getAddress())) {
+								finalActivity.foundDevices.put(mBleGatt.getDevice().getAddress(), mBleGatt.getDevice());
+							}
+						} else if (state == STATE_PAIRED) {
+							TextView playerTextView = (TextView)findViewById(R.id.textview_player);
+							playerTextView.setText(mBleGatt.getDevice().getAddress());
 						}
-
-						TextView playerTextView = (TextView)findViewById(R.id.textview_player);
-						playerTextView.setText(mBleGatt.getDevice().getAddress());
 					}
 				}
 			}
