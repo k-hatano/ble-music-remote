@@ -21,6 +21,7 @@ public class MainActivity extends Activity {
 	public static final int RESULT_OK = 0;
 	public static final int RESULT_ERROR_BLUETOOTH_IS_OFF = 1;
 	public static final int RESULT_ERROR_NOT_SUPPORTED = 2;
+	public static final int RESULT_ERROR_FAILED = 2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
