@@ -1,10 +1,12 @@
 package jp.nita.blemusicremote;
 
+import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,6 +58,12 @@ public class MainActivity extends Activity {
 			startActivity(enableBtIntent);
 			return;
 		}
+		
+		String[] permissions = new String[]{ Manifest.permission.ACCESS_COARSE_LOCATION };
+
+        if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+        	requestPermissions(permissions, 0);
+        }
 	}
 
 	@Override
