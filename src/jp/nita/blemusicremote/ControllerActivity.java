@@ -133,7 +133,7 @@ public class ControllerActivity extends Activity {
 						}
 					};
 
-					AlertDialog alertDialog = Statics.getAlertDialog(finalActivity, getString(R.string.player_mode),
+					AlertDialog alertDialog = Statics.getAlertDialog(finalActivity, getString(R.string.controller_mode),
 							getString(R.string.no_devices_found), listener);
 					alertDialog.show();
 				} else {
@@ -191,7 +191,7 @@ public class ControllerActivity extends Activity {
 							}
 						};
 
-						AlertDialog alertDialog = Statics.getAlertDialog(finalActivity, getString(R.string.player_mode),
+						AlertDialog alertDialog = Statics.getAlertDialog(finalActivity, getString(R.string.controller_mode),
 								getString(R.string.device_disconnected), listener);
 						alertDialog.show();
 					}
