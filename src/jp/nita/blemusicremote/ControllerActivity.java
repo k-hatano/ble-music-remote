@@ -113,7 +113,7 @@ public class ControllerActivity extends Activity {
 		scanPairedDevices();
 		scanNewDevice();
 		
-		mProgressDialog.setButton(getString(R.string.cancel), new OnClickListener(){
+		mProgressDialog.setButton(getString(R.string.done), new OnClickListener(){
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				mProgressDialog.cancel();
@@ -222,13 +222,6 @@ public class ControllerActivity extends Activity {
 							String message = getString(R.string.scanning) + "\n" + finalActivity.foundDevices.size()
 									+ " " + getString(R.string.devices_found);
 							mProgressDialog.setMessage(message);
-							
-							mProgressDialog.setButton(getString(R.string.connect), new OnClickListener(){
-								@Override
-								public void onClick(DialogInterface arg0, int arg1) {
-									mProgressDialog.cancel();
-								}
-							});
 						}
 					} else if (state == STATE_PAIRED) {
 						synchronized (bleProcess) {
@@ -241,12 +234,15 @@ public class ControllerActivity extends Activity {
 
 							descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
 							mBleGatt.writeDescriptor(descriptor);
+							mBleGatt.getDevice().createBond();
+							
+							state = STATE_NONE;
 
 							guiThreadHandler.post(new Runnable() {
 								@Override
 								public void run() {
 									TextView playerTextView = (TextView) findViewById(R.id.textview_player);
-									playerTextView.setText(mBleGatt.getDevice().getAddress());
+									playerTextView.setText(mBleGatt.getDevice().getAddress() + " / " + mBleGatt.getDevice().getName());
 								}
 							});
 						}
@@ -270,7 +266,10 @@ public class ControllerActivity extends Activity {
 				if ((type == BluetoothDevice.DEVICE_TYPE_LE || type == BluetoothDevice.DEVICE_TYPE_DUAL)
 						&& mBluetoothManager.getConnectionState(device,
 								BluetoothProfile.GATT) != BluetoothProfile.STATE_CONNECTING) {
-					device.connectGatt(getApplicationContext(), false, mGattCallback);
+					BluetoothGatt resultGatt = device.connectGatt(getApplicationContext(), false, mGattCallback);
+					if (resultGatt != null) {
+						scanningDevices.put(resultGatt.getDevice().getAddress(), resultGatt);
+					}
 				}
 				try {
 					Thread.sleep(100);
@@ -313,6 +312,8 @@ public class ControllerActivity extends Activity {
 		@Override
 		public void onScanFailed(int intErrorCode) {
 			super.onScanFailed(intErrorCode);
+			
+			ControllerActivity.this.setResult(MainActivity.RESULT_ERROR_FAILED);
 		}
 	};
 
@@ -408,6 +409,19 @@ public class ControllerActivity extends Activity {
 					byte[] bytes = { 04 };
 					mBleCharacteristic.setValue(bytes);
 					mBleGatt.writeCharacteristic(mBleCharacteristic);
+				}
+			}
+		});
+		
+		findViewById(R.id.button_eject).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				synchronized (bleProcess) {
+					if (mBleGatt == null) {
+						return;
+					}
+
+					mBleGatt.disconnect();
 				}
 			}
 		});

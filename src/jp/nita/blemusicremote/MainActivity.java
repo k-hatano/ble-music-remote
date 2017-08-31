@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -24,6 +25,7 @@ public class MainActivity extends Activity {
 	public static final int RESULT_ERROR_BLUETOOTH_IS_OFF = 1;
 	public static final int RESULT_ERROR_NOT_SUPPORTED = 2;
 	public static final int RESULT_ERROR_FAILED = 2;
+	public static final int RESULT_ERROR_DISCONNECTED = 3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,5 +85,31 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (requestCode) {
+		case REQUEST_CONTROLLER:
+			if (resultCode == RESULT_ERROR_BLUETOOTH_IS_OFF) {
+				Toast.makeText(this, "Bluetooth is off.", Toast.LENGTH_SHORT).show();
+				break;
+			}
+			if (resultCode == RESULT_ERROR_NOT_SUPPORTED) {
+				Toast.makeText(this, "Not supported.", Toast.LENGTH_SHORT).show();
+				break;
+			}
+			if (resultCode == RESULT_ERROR_FAILED) {
+				Toast.makeText(this, "An error occurred.", Toast.LENGTH_SHORT).show();
+				break;
+			}
+			if (resultCode == RESULT_ERROR_DISCONNECTED) {
+				Toast.makeText(this, "Device disconnected.", Toast.LENGTH_SHORT).show();
+				break;
+			}
+			break;
+		default:
+			break;
+		}
 	}
 }

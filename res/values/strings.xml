@@ -33,6 +33,7 @@
     <string name="no">No</string>
     <string name="cancel">Cancel</string>
     <string name="connect">Connect</string>
+    <string name="done">Done</string>
     
     <string name="devices_found">device(s) found.</string>
 
