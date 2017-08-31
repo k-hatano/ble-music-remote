@@ -109,6 +109,22 @@ public class PlayerActivity extends Activity {
 	}
 
 	@Override
+	protected void onDestroy() {
+		if (mGattServer != null) {
+			mGattServer.clearServices();
+			mGattServer.close();
+			mGattServer = null;
+		}
+
+		if (mAdvertiser != null) {
+			mAdvertiser.stopAdvertising(mAdvertiseCallback);
+			mAdvertiser = null;
+		}
+
+		super.onDestroy();
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.player, menu);
