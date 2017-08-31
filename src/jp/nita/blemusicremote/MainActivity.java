@@ -90,6 +90,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
+		case REQUEST_PLAYER:
 		case REQUEST_CONTROLLER:
 			if (resultCode == RESULT_ERROR_BLUETOOTH_IS_OFF) {
 				Toast.makeText(this, "Bluetooth is off.", Toast.LENGTH_SHORT).show();

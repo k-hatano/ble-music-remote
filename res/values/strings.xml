@@ -21,8 +21,8 @@
     
     <string name="show_log">Show Log</string>
     
-    <string name="advertising">Advertising...</string>
-    <string name="scanning">Scanning...</string>
+    <string name="advertising">Waiting connection from controller...</string>
+    <string name="scanning">Scanning player...</string>
     
     <string name="no_devices_found">No devices found.</string>
     <string name="select_device">Select device</string>
