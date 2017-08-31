@@ -149,7 +149,7 @@ public class PlayerActivity extends Activity {
 		mProgressDialog = Statics.getProgressDialog(this, getString(R.string.player_mode),
 				getString(R.string.advertising));
 
-		mProgressDialog.setButton(getString(R.string.done), new OnClickListener() {
+		mProgressDialog.setButton(getString(R.string.cancel), new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				mProgressDialog.cancel();
@@ -232,8 +232,10 @@ public class PlayerActivity extends Activity {
 						}
 					});
 				} else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-					PlayerActivity.this.setResult(MainActivity.RESULT_ERROR_DISCONNECTED);
-					finish();
+					if (mDevice != null && device.getAddress().equals(mDevice.getAddress())) {
+						PlayerActivity.this.setResult(MainActivity.RESULT_ERROR_DISCONNECTED);
+						finish();
+					}
 					mDevice = null;
 				}
 			}

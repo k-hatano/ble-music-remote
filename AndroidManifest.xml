@@ -32,6 +32,7 @@
         <activity
             android:name=".PlayerActivity"
             android:label="@string/title_activity_player"
+            android:logo="@drawable/player_on_phone"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -40,6 +41,7 @@
         <activity
             android:name=".ControllerActivity"
             android:label="@string/title_activity_controller"
+            android:logo="@drawable/controller_on_phone"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
